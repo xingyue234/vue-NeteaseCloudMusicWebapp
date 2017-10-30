@@ -1,0 +1,95 @@
+* {
+  
+     -webkit-box-sizing: border-box;
+  
+      box-sizing: border-box;
+
+  }
+
+/* 禁止文本缩放 字体设置  取消touch高亮效果 */
+  
+  html {
+  
+      width: 100%;
+  
+      height: 100%;
+  
+     margin: 0px;
+  
+     padding: 0px;
+  
+     -webkit-text-size-adjust: 100%;
+  
+     font-family: -apple-system, "PingFang SC","Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+  
+     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  
+      background: transparent;
+  
+     }
+  
+  body {
+  
+      width: 100%;
+  
+      height: 100%;
+  
+     -webkit-overflow-scrolling: touch;
+  
+   }
+  
+  body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6 {
+  
+      margin: 0;
+  
+      padding: 0;
+  
+  }
+  
+  /* 清除输入框内阴影 */
+  
+  input, select,textarea {
+  
+  border-radius: 0;   /*去除ios默认按钮圆角*/
+  
+  -webkit-appearance: none;
+  
+  }
+  
+  ol, ul {
+  
+      list-style: none;
+  
+  }
+  
+  
+  img,a{
+  
+  -webkit-touch-callout:none;
+  
+  }
+  img{
+      display: inline-block;
+      vertical-align: top;
+  }
+  a,a:active,a:hover {
+  
+  text-decoration: none;
+  
+  }
+  
+  /* 去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android) */
+  
+  a,button,input,textarea{ 
+  
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+
+  outline: none;
+
+  border: none;
+  
+  }
+
+::-webkit-scrollbar {/*隐藏滚轮*/
+display: none;
+}

@@ -1,0 +1,44 @@
+$a:60;
+$bgcolor:#57bcc1;
+
+@mixin fixedTop($top){
+   position: fixed;
+   top: $top;
+   left: 0;
+   right: 0;
+   bottom: 131/$a+rem;
+   overflow-x: hidden;
+   overflow-y: auto;
+}
+
+@mixin absoluteTop($top){
+   position: absolute;
+   top: $top;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   overflow: auto;
+}
+
+@mixin fixedTopBottom($top,$bottom){
+   position: fixed;
+   top: $top;
+   left: 0;
+   right: 0;
+   bottom: $bottom;
+   overflow: auto;
+}
+
+@mixin center(){
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin space-between(){
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+}

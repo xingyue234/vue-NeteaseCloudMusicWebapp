@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+
+    <!-- 关键字描述 -->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <meta name="format-detection" content="telphone=no, email=no" />
+
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <title>wangyiyun</title>
+    <style>
+      #app{
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script>
+      (function(document,window){
+        setSize();
+        function setSize(){
+          //动态生成meta
+          var meta = document.createElement("meta");
+          meta.name = "viewport";
+          var scale = 1;
+          scale = 1/window.devicePixelRatio;
+          meta.content = "width=device-width,user-scalable=no,minimum-scale="+ scale +",initial-scale="+scale+",maximum-scale="+scale;
+          document.head.appendChild(meta);
+          //设置html的font-size
+          var html = document.documentElement;
+          var width = html.clientWidth/16;  //1rem = 20px
+           //width = width >= 40 ? width : 40;
+          html.style.fontSize = width + "px";
+
+           //根据dpr修改font-size
+          let dpr = window.devicePixelRatio;
+          let sw = window.screen.width;
+          let bSize = '16px';
+          function setSw(n){
+            if(sw <= 600 && sw > 414){
+                    bSize = 18*n + 'px';
+            }else if(sw <= 414 && sw > 375){
+                    bSize = 16*n + 'px';
+            }else if(sw <= 375 && sw > 320){
+                  bSize = 14*n + 'px';
+            }else if(sw <= 320){
+                  bSize = 12*n + 'px';
+            }else if(sw > 600 && sw < 768){
+                  bSize = 25*n + 'px';
+            }
+          }
+          if(dpr >= 2 && dpr < 3 ){
+                setSw(2)
+          }else if( dpr >= 3){
+                setSw(3)
+          }
+          //console.log(window.devicePixelRatio,bSize);
+          document.body.style.fontSize = bSize;
+        }
+        window.onresize = setSize;
+        window.addEventListener('orientationchange','setSize',false);
+        document.addEventListener('DOMContentLoaded','setSize',false);
+      })(document,window)
+  </script>
+</html>

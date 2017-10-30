@@ -1,0 +1,31 @@
+$a:60;
+$bgcolor:#d33a31;
+
+.mint-indicator-wrapper{
+  padding: .4rem .5rem !important;
+  .mint-indicator-spin{
+    .mint-spinner-snake{
+      width: .8rem !important;
+      height: .8rem !important;
+      border: 5px solid transparent;
+    }
+  }
+}
+.mint-spinner-double-bounce{
+  width:66/$a+rem !important;
+  height:66/$a+rem !important;
+  margin: 0 auto;
+  .mint-spinner-double-bounce-bounce1{
+    background-color:$bgcolor !important;
+      
+  }
+  .mint-spinner-double-bounce-bounce2{
+    background-color:$bgcolor !important;
+         
+  }
+}
+
+.mint-switch-input:checked + .mint-switch-core{
+  border-color: $bgcolor;
+  background-color: $bgcolor;
+}

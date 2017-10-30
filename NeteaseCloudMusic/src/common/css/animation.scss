@@ -1,0 +1,53 @@
+//animation
+.fade-in-enter,
+.fade-in-leave-to{
+  opacity: 0;
+}
+.fade-in-enter-active,
+.fade-in-leave-active{
+  transition:all .4s ease;
+	-webkit-transition:all .4s ease;
+}
+.fade-in-enter-to,
+.fade-in-leave{
+    opacity: 1;
+}
+
+//fade-in-long
+.fade-in-long-enter,
+.fade-in-long-leave-to{
+  opacity: 0;
+  transform:translateY(-100%);
+  -webkit-transform:translateY(-100%);
+}
+.fade-in-long-enter-active,
+.fade-in-long-leave-active{
+  transition:all .4s ease;
+	-webkit-transition:all .4s ease;
+}
+.fade-in-long-enter-to,
+.fade-in-long-leave{
+    opacity: 1;
+    transform:translateY(0);
+  -webkit-transform:translateY(0);
+}
+
+//slide-in
+.slide-in-enter,
+.slide-in-leave-to{
+  transform: translate3d(0,100%,0);
+	-webkit-transform: translate3d(0,100%,0);
+}
+.slide-in-enter-active,
+.slide-in-leave-active{
+  transition:all .4s ease;
+	-webkit-transition:all .4s ease;
+}
+.slide-in-enter-to,
+.slide-in-leave{
+    transform: translate3d(0,0,0);
+		-webkit-transform: translate3d(0,0,0);
+}
+
+
+
