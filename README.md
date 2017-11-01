@@ -6,19 +6,32 @@
 * 感谢binaryify提供不断维护的数据
 > [api数据来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/)
 
+## 安装  
+``` shell
+$ git clone https://github.com/xingyue234/vue-NeteaseCloudMusicWebapp.git
+$ npm install
+```
+## 运行
+* 需要同时开启后台服务
+``` shell
+$ npm run dev
+
+```
+
 ### 项目描述
 
+* 在GitHub上看了大部分的网易云作品（star排前的），除了几个native-app和pc端桌面版比较优秀外，webapp很多都是业余练习项目，并不完整，界面稍显粗糙，bug居多，所以我在布局上更注重细节，尽量给人更好的视觉感，在功能上仔细斟酌，尽量做到更好的用户体验，更少的bug出现，该项目会一直做下去，直到所有音乐功能都完善（目前只做音乐部分），每天进步一点点，看着自己做的作品日渐完善，内心也充满成就感。哈哈哈！
 * 本项目主要模仿网易云音乐UI，以音乐为中心，实现了播放，搜索，登录，个人中心，收藏，喜欢等功能，建议在chrome开发模式浏览
 
 ### 项目依赖
 
 *  **vue+vue-router+vuex+iscroll+vue-iscroll-view+mint-ui+axios+fastclick+vue-awesome-swiper**
 
-####  布局
+###  布局
 * 结合 rem 和 scale 自动缩放，实现在移动端更高清的视觉效果
 * flex布局
 
-#### 内容
+### 内容
 
 >  模块一：首页
 * 轮播图，利用swiper组件构建的vue-awesome-swiper实现，推荐歌单，独家放送，最新音乐
@@ -106,15 +119,16 @@
 ![](copy/my6.png)![](copy/my.png)
 
 
+### 视频预览地址
 
 
 
-#### 项目感想
+### 项目感想
 
 * 通过这个播放器的锻炼，让我对Vue组件数据通信，生命周期钩子，vuex数据绑定机制，和vue-router的事件钩子有了更深刻的理解，同时也有更多的疑惑，我确信，多写项目，多向牛人学习，总有一天，技术水平会更上一层楼的。
 
 
-#### 遗留
+### 遗留
 
 * 项目中还有一些组件没有很好的分类，在组件复用和内容管理上还需进一步调整，在路由嵌套，状态管理上还需要更好的分类，还有几个小功能待完成：例如换肤，夜间模式，驾驶模式这些
 
@@ -132,28 +146,4 @@
 
 
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
 

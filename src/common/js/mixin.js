@@ -13,7 +13,7 @@ export const scrollMixin = {
         click: true,
         preventDefault: false,
         tap: false,
-        bounce: false,
+        bounce: true,
         disableTouch: false,
         disableMouse:false,
         scrollbars:true,

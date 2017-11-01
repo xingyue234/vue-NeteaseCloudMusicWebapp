@@ -1,5 +1,6 @@
 <template>
-  <div class="add-to-list">
+  <transition name="slide-in">
+    <div class="add-to-list">
      <div class="add-list-cover" @click="updateshowAddToList(false)"></div>
      <div class="add-list-content">
        <h1>收藏到歌单</h1>
@@ -25,6 +26,7 @@
        </div>
      </div>
   </div>
+  </transition>
 </template>
 <script>
 import {mapState,mapMutations} from 'vuex'

@@ -235,8 +235,11 @@ export default{
 		]),
 		...mapGetters(['playListIdType']),
 		getPlayinfo(){
-			this.id = this.$store.state.play.id;
+			this.id = this.songId;
 			return this.$store.state.play;
+		},
+		songId(){
+			return this.$store.state.play.id;
 		},
 		//是否正在播放
 		isplaying(){
@@ -247,7 +250,6 @@ export default{
 			return this.$store.state.isplaying;
 		},
 		closeTime(){
-			this.time = this.$store.state.closeTime;
 			return this.$store.state.closeTime;
 		},
 		
@@ -255,6 +257,7 @@ export default{
 	watch:{
 		time(v){
 			if(v === 0){
+				console.log('定时结束了',this.isplayings);
 				this.$store.commit('updateisplaying',false);
 			}
 		},
@@ -466,6 +469,7 @@ export default{
 		},
 		//转换成网页显示时间
 		convertTime(Time){
+			this.time = this.closeTime;  //播放时currentTime不断更新，同时time也可以实时更新
       let minutes =	Math.floor(Time/60);
 			minutes = minutes < 0 ? '0' + minutes : minutes; 
 			let seconds = Math.round(Time%60);

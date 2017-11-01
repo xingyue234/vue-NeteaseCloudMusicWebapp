@@ -1,5 +1,6 @@
 <template>
-  <div class="set-time">
+  <transition name="slide-in">
+    <div class="set-time">
     <div class="set-time-cover" @click="updateshowSetTime(false)"></div>
     <div class="set-time-content">
         <h4>定时停止播放</h4>
@@ -20,8 +21,8 @@
           <span class="time-delay-txt">计时结束后播完当前歌曲再停止</span>
         </div>
     </div>
-
-  </div>
+   </div>
+  </transition>
 </template>
 <script>
 import { Swithc } from 'mint-ui'
@@ -40,19 +41,19 @@ export default {
           checked:false
         },
         {
-          title:'20分钟后',
+          title:'2分钟后',
           checked:false
         },
         {
-          title:'30分钟后',
+          title:'3分钟后',
           checked:false
         },
         {
-          title:'45分钟后',
+          title:'4分钟后',
           checked:false
         },
         {
-          title:'60分钟后',
+          title:'6分钟后',
           checked:false
         }
       ],

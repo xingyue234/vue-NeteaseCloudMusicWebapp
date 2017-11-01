@@ -40,13 +40,13 @@
     <popup :title="pop.title" :position="pop.position" v-model="pop.show"></popup>
 
     <song-more></song-more>
+
     <song-play-more></song-play-more>
-    <transition name="fade-in">
-      <add-list v-if="showAddToList"></add-list>
-    </transition>
-    <transition name="fade-in">
-      <set-time v-if="showSetTime"></set-time>
-    </transition>
+
+    <add-list v-if="showAddToList"></add-list>
+
+    <set-time v-if="showSetTime"></set-time>
+
   </div>
 </template>
 
@@ -135,12 +135,12 @@ export default {
         'showPlayfooter',
         'play',
         'showPlayList',
+        'showPlaySongMore',
         'lrcData',
         'duration',
         'pop',
         'showAddToList',
         'showSetTime',
-        
        ]),
        isplaying(){
         if(!this.$store.state.isplaying){
@@ -237,7 +237,7 @@ export default {
       position: absolute;
       left: 0;
       bottom:0;
-      height:1px;
+      height:3px;
       background: $bgcolor;
     }
   .main-footer{

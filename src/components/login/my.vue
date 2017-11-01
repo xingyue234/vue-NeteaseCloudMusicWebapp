@@ -307,7 +307,6 @@ export default {
    }
   },
   computed:{
-    ...mapState(['myCreatePlayList']),
     myLocation(){
       let location = '';
       for(var p in placesMap){

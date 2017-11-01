@@ -1,10 +1,10 @@
 <template>
   <div class="play-song-more">
-      <transition name="fade-in" v-if="showPlaySongMore">
-        <div class="cover-bg" @click="updateshowPlaySongMore(false)">
-        </div>
-      </transition>
-       <div :class="{'s-m-content':true,'hidde-s-m':!showPlaySongMore}">
+        <transition name="fade-in">
+          <div class="cover-bg" @click="updateshowPlaySongMore(false)"  v-if="showPlaySongMore">
+          </div>
+        </transition>
+       <div :class="{'s-m-content':true,'hidde-s-m':!showPlaySongMore}"  :id="getTT()">
         <div class="song-name">歌曲：{{next.name}}</div>
         <ul class="song-more-ul">
           <li class="song-more-li" @click="goAddList">
@@ -33,7 +33,7 @@
 </template>
 <script>
 import {mapState,mapMutations} from 'vuex'
-import {songDetail,playUrl,addPlayList} from '@/service/getData'
+import {songDetail,addPlayList} from '@/service/getData'
 import {setStore,getStore} from '@/service/storage';
 
 export default{
@@ -59,13 +59,11 @@ export default{
     songId(){
        return this.$store.state.play.id;
     },
-    closeTime(){
-      this.close_time = this.$store.state.closeTime;
-      return this.$store.state.closeTime;
-    },
+
   },
   watch:{
     close_time(){
+      console.log('watch变化了')
      if(!this.closeTime){
         this.timeText = '定时停止播放';
       }else{
@@ -97,21 +95,6 @@ export default{
     },
 
   },
-  created(){
-    playUrl({
-          id:this.next.id
-      }).then((res)=>{
-          if(res.data.code == 200 && res.data.data[0].url){
-            this.songUrl = res.data.data[0].url;
-          }else{
-            this.songUrl = '';
-            this.$store.commit('updatepop',{
-              show:true,
-              title:'sorry，链接不存在，下载失败~'
-            })
-          }
-   })
-  },
   methods:{
     ...mapMutations(['updateshowPlaySongMore','updateshowAddToList','updateshowSetTime']),
     goAddList(){
@@ -127,12 +110,14 @@ export default{
       this.$store.commit('updateshowPlaySongMore',false);
       setTimeout(()=>{
         this.$store.commit('updateshowSetTime',true);
-      },500)
+      },400)
     },
-
+    getTT(){
+        console.log('loaded');
+        this.close_time = this.closeTime;
+        return 1;
+    },
     
-
-
 
 
 
