@@ -9,7 +9,7 @@
   </transition>
 </template>
 <script>
-import indexHeader from './view/index-header';
+import indexHeader from '@/components/view/index-header';
 export default {
   name:'index',
   data(){

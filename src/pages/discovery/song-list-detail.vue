@@ -100,19 +100,23 @@
   </div>
 </template>
 <script>
-import myHeader from '../header'
+import myHeader from '@/components/header'
 import {playlistDetail} from '@/service/getData';
 import {mapState,mapMutations} from 'vuex';
 import {scrollMixin} from '@/common/js/mixin';
 import { Indicator } from 'mint-ui';
-import songSearch from './song-list-search';
+import songSearch from '@/components/song-list-search';
 
 export default {
   name:'songsdetail',
   data(){
     return{
       id:this.$route.params.id,
-      songsDetail:'',
+      songsDetail: {
+        creator: {},
+        tracks: [],
+        trackCount: ''
+      },
       bgOpacity:0,
       HOpacity:1,
       songsTitle:'歌单',

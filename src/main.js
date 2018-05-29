@@ -9,6 +9,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import FastClick from 'fastclick'
 import IScroll from 'iscroll/build/iscroll-probe.js' 
 import IScrollView from 'vue-iscroll-view'
+
 /**
  * mint-ui
  */
@@ -20,6 +21,7 @@ import '@/common/css/mixin.scss';       //scss公共样式
 import '@/common/icon/iconfont.css';    //字体样式
 import '@/common/css/animation.scss'     //vue animation 样式
 import '@/common/css/mint-cover.scss'     //覆盖mint-ui的样式
+import '@/utils/rem'
 
 
 

@@ -128,13 +128,12 @@ export default {
        privateMsg:[],
        newSongs:[],
        startY:0,
-       startX:0,
-
+       startX:0
      }
    },
   mixins:[scrollMixin],
   beforeCreate(){
-       Indicator.open();
+      Indicator.open();
    },
    created(){
       recSongList.then((res)=>{
@@ -156,13 +155,10 @@ export default {
           }
        })
    },
-   computed:{
-
-      
+   computed:{ 
    },
    components:{
      mySwiper
-
    },
    methods:{
     playListEnd(e,item){
@@ -173,9 +169,7 @@ export default {
     },
     goSongsList(){
       this.$router.push('/finesong');
-    }
-
-     
+    }    
    }
 }
 </script>

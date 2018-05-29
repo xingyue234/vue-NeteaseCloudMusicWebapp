@@ -178,7 +178,7 @@
   </div>
 </template>
 <script>
-import myHeader from '../header'
+import myHeader from '@/components/header'
 import {reLogin,userDetail,userCount,userPlaylist,userEvent} from '@/service/getData'
 import {placesMap} from '@/common/js/province'
 import {animation} from '@/common/js/animation-scroll'

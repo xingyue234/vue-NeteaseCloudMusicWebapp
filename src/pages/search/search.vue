@@ -34,10 +34,10 @@
 
 import {searchRecommend,searchData} from '@/service/getData';
 import {setStore,getStore} from '@/service/storage';
-import searchMain from './search-main';
-import searchMusic from './search-result/search-music';
-import searchSinger from './search-result/search-singer';
-import myHeader from '../header';
+import searchMain from '@/components/search/search-main';
+import searchMusic from '@/components/search/search-result/search-music';
+import searchSinger from '@/components/search/search-result/search-singer';
+import myHeader from '@/components/header';
 import {mapState} from 'vuex';
 import { Indicator } from 'mint-ui';
 

@@ -21,10 +21,10 @@
   </div>
 </template>
 <script>
-import myHeader from '../header'
-import popup from './popup'
-import {Login} from '../../service/getData';
-import {setStore,getStore} from '../../service/storage';
+import myHeader from '@/components/header'
+import popup from '@/components/base/popup'
+import {Login} from '@/service/getData';
+import {setStore,getStore} from '@/service/storage';
 
 export default {
   name:'login',

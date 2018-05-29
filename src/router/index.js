@@ -1,32 +1,31 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const Index = resolve => require(['@/components/index'], resolve) 
-const Find = resolve => require(['@/components/discovery'], resolve) 
-const myMusic = resolve => require(['@/components/mymusic'], resolve) 
-const Friends = resolve => require(['@/components/friends'], resolve) 
-const Search = resolve => require(['@/components/search/search'], resolve) 
-const Rank = resolve => require(['@/components/discovery/children/rank'], resolve) 
-const Recommend = resolve => require(['@/components/discovery/children/recommend'], resolve) 
-const SongList = resolve => require(['@/components/discovery/children/song-list'], resolve)
-const SongListDetail = resolve => require(['@/components/discovery/song-list-detail'], resolve)
-const RankSongs = resolve => require(['@/components/discovery/children/rank-songs'], resolve)
-const FineSong = resolve => require(['@/components/discovery/fine-song'], resolve)
-const Rank2 = resolve => require(['@/components/discovery/rank2'], resolve)
+const Index = resolve => require(['@/pages/index'], resolve) 
+const Find = resolve => require(['@/pages/discovery/discovery'], resolve) 
+const myMusic = resolve => require(['@/pages/my_music'], resolve) 
+const Friends = resolve => require(['@/pages/friends/friends'], resolve) 
+const Search = resolve => require(['@/pages/search/search'], resolve) 
+const Rank = resolve => require(['@/pages/discovery/children/rank'], resolve) 
+const Recommend = resolve => require(['@/pages/discovery/children/recommend'], resolve) 
+const SongList = resolve => require(['@/pages/discovery/children/song-list'], resolve)
+const SongListDetail = resolve => require(['@/pages/discovery/song-list-detail'], resolve)
+const RankSongs = resolve => require(['@/pages/discovery/children/rank-songs'], resolve)
+const FineSong = resolve => require(['@/pages/discovery/fine-song'], resolve)
+const Rank2 = resolve => require(['@/pages/discovery/rank2'], resolve)
 
-const Play = resolve => require(['../components/play'], resolve) 
-const My = resolve => require(['../components/login/my'], resolve) 
-const Login = resolve => require(['@/components/login/login'], resolve) 
-const Record = resolve => require(['../components/login/record'], resolve) 
-// import Index from '@/components/index'
-// import Find from '@/components/discovery'
-// import myMusic from '@/components/mymusic'
-// import Friends from '@/components/friends'
-// import Search from '@/components/search/search'
-// import Video from '@/components/discovery/children/video'
-// import Radio from '@/components/discovery/children/radio'
-// import Music from '@/components/discovery/children/music'
-// import Login from '@/components/login/login'
-// import My from '@/components/login/my'
+const My = resolve => require(['@/pages/login/my'], resolve) 
+const Login = resolve => require(['@/pages/login/login'], resolve) 
+const Record = resolve => require(['@/pages/login/record'], resolve) 
+// import Index from '@/pages/index'
+// import Find from '@/pages/discovery'
+// import myMusic from '@/pages/mymusic'
+// import Friends from '@/pages/friends'
+// import Search from '@/pages/search/search'
+// import Video from '@/pages/discovery/children/video'
+// import Radio from '@/pages/discovery/children/radio'
+// import Music from '@/pages/discovery/children/music'
+// import Login from '@/pages/login/login'
+// import My from '@/pages/login/my'
 Vue.use(Router)
 
 export default new Router({
@@ -100,7 +99,6 @@ export default new Router({
               component: Search,
             },
       ]
-
     },
     {
       path:'/login',
@@ -116,7 +114,6 @@ export default new Router({
       path:'/record',
       name:'record',
       component:Record
-    },
-    
+    } 
   ]
 })

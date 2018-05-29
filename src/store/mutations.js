@@ -120,7 +120,6 @@ export default{
     if(nickname){
        state.loginMsg.nickname = nickname;
     }
-     
   },
   //用户详情
   updateuserDetail(state,newVal){

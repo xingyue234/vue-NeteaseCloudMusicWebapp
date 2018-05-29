@@ -37,8 +37,9 @@ export default {
   name: 'leftmenu',
   data(){
     return {
-      myDetail:'',
-       
+      myDetail: {
+        profile: {}
+      }
     }
   },
   created(){

@@ -105,14 +105,5 @@ export default {
         * 我创建的歌单
         */
       myCreatePlayList:[],
-      showAddToList:false,
-      
-
-
-
-
-
- 
-
-      
+      showAddToList:false    
 }

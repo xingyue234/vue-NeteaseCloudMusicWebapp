@@ -1,7 +1,9 @@
 <template>
   <div id="app">
+    <!-- 左侧菜单 -->
     <left-menu></left-menu>
 
+    <!-- 播放器核心组件 -->
     <play :class="{'hidde-play':true,'show-play':showPlay}" v-on:getCurTime="getCurrentTime"></play>
 
     <keep-alive>
@@ -31,8 +33,10 @@
       </div>
     </div>
 
+    <!-- 播放列表 -->
     <play-list></play-list>
 
+    <!-- 拖拽歌词组件 -->
     <div class="drag" v-drag v-if="showDrag">
        <span class="drag-lyric">{{lyric}}</span>
     </div>
@@ -51,7 +55,7 @@
 </template>
 
 <script>
-import leftMenu from './components/view/left-menu';
+import leftMenu from '@/components/view/left-menu';
 import Vue from 'vue';
 import play from '@/components/play/'
 import { mapState } from 'vuex'
@@ -60,7 +64,7 @@ import {setStore,getStore} from '@/service/storage';
 import {userRecord,userPlaylist} from '@/service/getData';
 import playList from '@/components/play/play-list';
 import {drag} from '@/common/js/directives';
-import popup from '@/components/login/popup';
+import popup from '@/components/base/popup';
 import songMore from '@/components/view/song-more';
 import addList from '@/components/view/add-to-list';
 import songPlayMore from '@/components/view/play-song-more';
@@ -89,21 +93,22 @@ export default {
     drag
   },
   created(){
-    if(getStore('loginInfo')){
+    // console.log((getStore('loginInfo'))
+    let a = getStore('loginInfo')
+    if (getStore('loginInfo')) {
       let id = JSON.parse(getStore('loginInfo')).id;
       let nickname = JSON.parse(getStore('loginInfo')).nickname;
       this.$store.commit('updateloginMsg',{
-        uid:id,
+        uid: id,
         nickname
       })
       this.uid = id;
 
       let _nowId = JSON.parse(getStore('nowId'));
       this.$store.commit('updateplayInfo',{
-        id:_nowId
+        id: _nowId
       })
 
-    
       if(getStore('playListId')){
           let ids = JSON.parse(getStore('playListId'));
           this.$store.commit('updateplayListId',ids);
@@ -125,7 +130,6 @@ export default {
       }).catch((err)=>{
         console.log(err)
       })
-
     }
   },
   computed:{

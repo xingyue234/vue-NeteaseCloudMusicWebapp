@@ -42,7 +42,7 @@
  </div>
 </template>
 <script>
-import myHeader from '../header'
+import myHeader from '@/components/header'
 import {mapState,mapMutations} from 'vuex';
 import { Indicator } from 'mint-ui';
 import {scrollMixin} from '@/common/js/mixin';

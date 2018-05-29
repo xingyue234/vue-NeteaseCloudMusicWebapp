@@ -58,10 +58,10 @@
   </div>
 </template>
 <script>
-import myHeader from '../header'
-import popup from './popup'
-import {userRecord} from '../../service/getData';
-import {setStore,getStore} from '../../service/storage';
+import myHeader from '@/components/header'
+import popup from '@/components/base/popup'
+import {userRecord} from '@/service/getData';
+import {setStore,getStore} from '@/service/storage';
 import { Indicator } from 'mint-ui';
 import { mapState } from 'vuex';
 import {animation} from '@/common/js/animation-scroll'

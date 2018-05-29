@@ -158,12 +158,12 @@ export default{
 			playBack:false,
 			id:0,     //当前播放的id
 			isPlayings:false,   //暂时存储isplaying的值，以便监听
-//  slider播放条数据
+      // slider播放条数据
 			sliderstart:false,            //开始touch
 			disX:0,   //当前位移,滑块位移和背景长度
 			startX:0,      //box的offsetLeft
 			boxW:0,
-//音量slider状态
+    //音量slider状态
      vol:{
 			  volStart:false,
 				voldisX:0,
@@ -179,10 +179,9 @@ export default{
 		 tranwrap:'',
 		 wrap:'',
 		 PlayUrl:'/static/tonghuazheng2.mp3',   //播放url
-//歌词
-			activeIndex:-1,
-
-	//操作
+     //歌词
+		 activeIndex:-1,
+	   //操作
 	   iconUnlike:true,
 		 iconLike:false,
 		 /*
@@ -205,8 +204,7 @@ export default{
       ],
 			i:0,
 			//定时
-			time:false,
-
+			time:false
 		}
 	},
 	directives:{
@@ -221,7 +219,6 @@ export default{
 				}
      },
 		 pic
-
 	},
 	computed:{
 		...mapState([
@@ -251,11 +248,10 @@ export default{
 		},
 		closeTime(){
 			return this.$store.state.closeTime;
-		},
-		
+		}
 	},
 	watch:{
-		time(v){
+		time (v) {
 			if(v === 0){
 				console.log('定时结束了',this.isplayings);
 				this.$store.commit('updateisplaying',false);
@@ -312,7 +308,6 @@ export default{
 											})
 											this.$store.commit('updatelrcData',tempLrcData);
 									}
-									
 								})
 						}
 				}).catch((err)=>{
@@ -353,7 +348,7 @@ export default{
 					console.log(err)
 				})
 		},
-		getArtists(ar){
+		getArtists (ar) {
         let arName = [];
         ar.forEach((item)=>{
           arName.push(item.name);
@@ -378,8 +373,8 @@ export default{
 			})
 			this.$store.commit('updateisplaying',true);
 		},
-		playPrevSong(isClick){
-			if(isClick ){
+		playPrevSong (isClick) {
+			if(isClick){
           this.$store.commit('updateplayListId',this.playListIdType.xunhuan);
 			}
 			let index = 0;
@@ -396,7 +391,7 @@ export default{
 			})
 			this.$store.commit('updateisplaying',true);
 		},
-		changePlayType(){
+		changePlayType () {
 			this.$store.commit('updateloop',false);
 			this.i++;
 			if(this.i >= this.playType.length){this.i = 0};
@@ -414,7 +409,7 @@ export default{
 			}
 		},
 		//自动播放函数
-		play(){
+		play () {
 		   clearInterval(this.timer);
 	     this.timer = null;
 			 this.boxW = this.$refs.myslider.offsetWidth;
@@ -434,15 +429,15 @@ export default{
 			    this.calTranslate(this.currentTime);
 		   },1000)
 	    },
-	    pause(){
+	    pause () {
 	    	clearInterval(this.timer);
 	    	this.timer = null;
 	    },
-		canplay(e){
+		canplay (e) {
 			e = e || event;
 			this.$store.commit('updateduration',e.target.duration);
 		},
-		stopPlay(){
+		stopPlay () {
 				setTimeout(()=>{
 				 	  this.$refs.radio.pause();
 						this.$store.commit('updateisplaying',false);
@@ -451,7 +446,7 @@ export default{
 				},500);
 		},
 		//点击播放
-		bofang(){
+		bofang () {
 			//获取slider-box高度
      this.boxW = this.$refs.myslider.offsetWidth;
 		 if(this.isplaying){
@@ -460,7 +455,7 @@ export default{
 			  this.startPlay();
 		 }
 		},
-		startPlay(){
+		startPlay () {
 			if(this.disX >= this.boxW){
           this.disX = 0;
 			}
@@ -468,7 +463,7 @@ export default{
 			this.$store.commit('updateisplaying',true);
 		},
 		//转换成网页显示时间
-		convertTime(Time){
+		convertTime (Time) {
 			this.time = this.closeTime;  //播放时currentTime不断更新，同时time也可以实时更新
       let minutes =	Math.floor(Time/60);
 			minutes = minutes < 0 ? '0' + minutes : minutes; 
@@ -476,12 +471,10 @@ export default{
 			seconds = seconds < 10 ? '0' + seconds : seconds;
 			return minutes + ':' + seconds;
 		},
-		
-
 		/*
 		* slider播放条方法
 		*/
-		jump(e){
+		jump (e) {
 			//手指按下时跳转到固定位置
 			this.disX = e.touches[0].pageX - this.$refs.slider.offsetLeft;
 			this.boxW = e.touches[0].target.parentElement.offsetWidth;
@@ -491,7 +484,7 @@ export default{
 			//计算位移
 			this.calTranslate(this.currentTime);
 		},
-		sliderStart(e){
+		sliderStart (e) {
 			clearInterval(this.timer);   //touch时停止自动播放
 			//如果duration还没获取到，禁止拖动
 			if(!this.duration){
@@ -501,7 +494,7 @@ export default{
 			this.boxW = e.touches[0].target.parentElement.offsetWidth;
 			this.startX = e.touches[0].target.parentElement.offsetLeft;
 		},
-		sliderMove(e){
+		sliderMove (e) {
 			if(this.sliderstart){
 				let el = e.touches[0].target;
 				this.disX = e.touches[0].pageX - this.startX;
@@ -627,14 +620,8 @@ export default{
 		},
 		showMore(){
 			this.$store.commit('updateshowPlaySongMore',true);
-		},
-
-
-
-
-		
-	},
-	
+		}
+	}
 }
 </script>
 

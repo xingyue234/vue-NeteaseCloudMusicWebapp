@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-import myHeader from '../header'
+import myHeader from '@/components/header'
 import {highquality} from '@/service/getData';
 import {mapState} from 'vuex';
 import {scrollMixin} from '@/common/js/mixin';

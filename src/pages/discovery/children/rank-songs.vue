@@ -105,7 +105,7 @@ import {topListSongs} from '@/service/getData';
 import {mapState,mapMutations} from 'vuex';
 import {scrollMixin} from '@/common/js/mixin';
 import { Indicator } from 'mint-ui';
-import rankSearch from './rank-search';
+import rankSearch from '@/components/rank-search';
 
 export default {
   name:'ranksongs',

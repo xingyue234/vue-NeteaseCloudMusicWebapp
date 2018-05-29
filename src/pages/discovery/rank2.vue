@@ -50,7 +50,7 @@
 import {pic} from '@/common/js/directives';
 import {topList} from '@/service/getData';
 import axios from 'axios';
-import { Indicator } from 'mint-ui';
+import {Indicator} from 'mint-ui';
 import {scrollMixin} from '@/common/js/mixin';
 import myHeader from '@/components/header'
 

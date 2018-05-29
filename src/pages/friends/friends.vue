@@ -9,7 +9,7 @@ export default {
   name:'friends',
   data(){
     return {
-       
+
     }
   },
   created(){
@@ -20,6 +20,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import 'src/common/css/mixin.scss';
 
@@ -29,4 +30,3 @@ export default {
   color:white;
 }
 </style>
-
