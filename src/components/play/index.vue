@@ -257,7 +257,7 @@ export default{
 				this.$store.commit('updateisplaying',false);
 			}
 		},
-    id(newValue){
+    id (newValue) {
       this.getSongData(newValue);
 		},
 		isPlayings(play){
@@ -287,6 +287,7 @@ export default{
 		**更新播放数据
 		*/
 		getSongData(id){
+			console.log('切换歌曲')
 			 this.$store.commit('updatelrcData',[]);//清空之前的歌词
 				//获取歌词
 				lyric({
@@ -313,40 +314,40 @@ export default{
 				}).catch((err)=>{
 					console.log(err);
 				})
+				this.PlayUrl = 'https://music.163.com/song/media/outer/url?id=' + id + '.mp3'
 				//获取播放url
-				playUrl({
-					id
-				}).then((res)=>{
-					console.log(res,'播放url');
-					if(res.data.code == 200 && res.data.data[0].url){
-						this.PlayUrl = res.data.data[0].url;
-					}else{
-						this.PlayUrl = '';
-						this.$store.commit('updateisplaying',false);
-						this.$store.commit('updatepop',{
-							show:true,
-							title:'sorry,因为版权原因无法播放~'
-						})
-					}
-				}).catch((err)=>{
-					console.log(err)
-				})
+				// playUrl({
+				// 	id
+				// }).then((res)=>{
+				// 	if(res.data.code == 200 && res.data.data[0].url){
+				// 		this.PlayUrl = res.data.data[0].url;
+				// 	}else{
+				// 		this.PlayUrl = '';
+				// 		this.$store.commit('updateisplaying',false);
+				// 		this.$store.commit('updatepop',{
+				// 			show:true,
+				// 			title:'sorry,因为版权原因无法播放~'
+				// 		})
+				// 	}
+				// }).catch((err)=>{
+				// 	console.log(err)
+				// })
 				/*
 				**获取歌曲详情
 				*/
-				songDetail({
-					ids:id
-				}).then((res)=>{
-						if(res.data.code == 200){
-								this.$store.commit('updateplayInfo',{
-									name: res.data.songs[0].name,
-									singer: this.getArtists(res.data.songs[0].ar),
-									singerImg: res.data.songs[0].al.picUrl
-								})
-						}
-				}).catch((err)=>{
-					console.log(err)
-				})
+				// songDetail({
+				// 	ids:id
+				// }).then((res)=>{
+				// 		if(res.data.code == 200){
+				// 				this.$store.commit('updateplayInfo',{
+				// 					name: res.data.songs[0].name,
+				// 					singer: this.getArtists(res.data.songs[0].ar),
+				// 					singerImg: res.data.songs[0].al.picUrl
+				// 				})
+				// 		}
+				// }).catch((err)=>{
+				// 	console.log(err)
+				// })
 		},
 		getArtists (ar) {
         let arName = [];

@@ -35,7 +35,7 @@
                   <span class="vip-type" v-if="songsDetail.creator.vipType"><i class="iconfont icon-jinlingyingcaiwangtubiao49"></i></span>
                   <img :src="songsDetail.creator.avatarUrl" alt="" v-pic>
                   </span><span class="l-n-d-text">
-                {{songsDetail.creator.nickname}}</span><i class="iconfont icon-more"></i>
+                  {{songsDetail.creator.nickname}}</span><i class="iconfont icon-more"></i>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@
             </div>
           </div>
           <div class="s-l-con">
-              <ul class="s-l-ul">
+              <ul class="s-l-ul" v-if="songsDetail.tracks.length">
                 <li class="s-l-li" v-for="(item,index) in songsDetail.tracks" 
                 @touchstart="playStart"
                 @touchend="playEnd($event,item.id)"
@@ -76,7 +76,7 @@
                 <div class="num" v-else>{{index+1}}</div>
                   <div class="text-right">
                     <div class="s-l-li-text">
-                      <div class="song-name">{{item.name}}
+                      <div class="song-name" >{{item.name}}
                         <!--<span class="alias" v-if="item.alia.length">({{item.alia[0]}})</span>-->
                         <span class="mv" v-if="item.mvid"><i class="iconfont icon-MV"></i></span>
                       </div>
@@ -111,7 +111,10 @@ export default {
   name:'ranksongs',
   data(){
     return{
-      songsDetail:'',
+      songsDetail:{
+        creator: {},
+        tracks: []
+      },
       bgOpacity:0,
       HOpacity:1,
       songsTitle:'歌单',
@@ -123,15 +126,15 @@ export default {
           tap: false,
           bounce: true,
           disableTouch: false,
-          disableMouse:false,
-          scrollbars:true,
-          fadeScrollbars:true,
-          interactiveScrollbars:true,
-          shrinkScrollbars:'clip',
+          disableMouse: false,
+          scrollbars: true,
+          fadeScrollbars: true,
+          interactiveScrollbars: true,
+          shrinkScrollbars: 'clip',
           probeType: 2
        },
-       searchResult:[],
-       showsearchList:false,
+       searchResult: [],
+       showsearchList: false,
     }
     
   },
@@ -141,9 +144,8 @@ export default {
     topListSongs({
       idx:this.idx
     }).then((res)=>{
-      console.log(res,'排行歌曲');
       if(res.data.code == 200){
-          this.songsDetail = res.data.result;
+          this.songsDetail = res.data.playlist;
           setTimeout(()=>{
             Indicator.close();
           },300)
@@ -195,14 +197,14 @@ export default {
     },
    searchList(value){
       this.searchResult = [];
-      if(value == ''){
+      if(value === ''){
          this.searchResult = [];
          return;
       }
       this.songsDetail.tracks.forEach((item)=>{
         let pat = new RegExp(value);
         if(pat.test(item.name)){
-            this.searchResult.push(item);
+          this.searchResult.push(item);
         }
       })
     },

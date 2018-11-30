@@ -93,8 +93,8 @@ export default {
     drag
   },
   created(){
-    // console.log((getStore('loginInfo'))
     let a = getStore('loginInfo')
+    console.log(a)
     if (getStore('loginInfo')) {
       let id = JSON.parse(getStore('loginInfo')).id;
       let nickname = JSON.parse(getStore('loginInfo')).nickname;
@@ -130,6 +130,8 @@ export default {
       }).catch((err)=>{
         console.log(err)
       })
+    } else {
+      this.$router.push('/login')
     }
   },
   computed:{

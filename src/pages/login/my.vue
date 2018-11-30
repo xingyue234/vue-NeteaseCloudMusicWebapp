@@ -224,7 +224,9 @@ export default {
           }
         ],
         topOpacity:1,
-        myDetail:null,
+        myDetail: {
+          profile: {}
+        },
         birthday:0,
         sex:'男',
         old:0,

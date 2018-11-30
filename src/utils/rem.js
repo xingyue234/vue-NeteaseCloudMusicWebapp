@@ -18,9 +18,9 @@
     let bSize = '16px';
     function setSw(n){
       if(sw <= 600 && sw > 414){
-              bSize = 18*n + 'px';
+            bSize = 18*n + 'px';
       }else if(sw <= 414 && sw > 375){
-              bSize = 16*n + 'px';
+            bSize = 16*n + 'px';
       }else if(sw <= 375 && sw > 320){
             bSize = 14*n + 'px';
       }else if(sw <= 320){
@@ -37,8 +37,8 @@
     document.body.style.fontSize = bSize;
   }
   window.onresize = setSize;
-  if (window.onorientationchange) {
-    window.addEventListener('orientationchange','setSize',false);
-  }
-  document.addEventListener('DOMContentLoaded','setSize',false);
+  // if (window.onorientationchange) {
+  //   window.addEventListener('orientationchange','setSize',false);
+  // }
+  // document.addEventListener('DOMContentLoaded','setSize',false);
 })(document,window)

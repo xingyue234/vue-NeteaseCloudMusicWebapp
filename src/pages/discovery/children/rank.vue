@@ -12,11 +12,11 @@
          >
           <span class="o-bg-url">
             <img :src="item.coverImgUrl" alt=""  v-pic>
-            <span class="update-time">{{ getUpdateText(item.updateTime,'minutes') }}更新</span>
+            <span class="update-time">{{ getUpdateText(item.trackUpdateTime,'minutes') }} 更新</span>
           </span>
           <span class="o-song-list">
             <span class="o-song-text" v-for="(item,index) in getThreesongs(item)" :key="index">
-              {{(index+1)+'.'+item.name+' - '+getArtistsName(item.artists)}}
+              {{(index + 1) + '. ' + item.name + ' - '+ getArtistsName(item.ar)}}
             </span>
           </span>
         </li>
@@ -33,7 +33,7 @@
         @touchend="goDetail($event,item.idx)"
         >
           <span class="g-bg-url">
-            <img :src="item.coverImgUrl" alt="" v-pic><span class="update-time" >{{ getUpdateText(item) }}</span>
+            <img :src="item.coverImgUrl" alt="" v-pic><span class="update-time" >{{ getUpdateText(item.trackUpdateTime, 'minutes') }}</span>
           </span>
           <span class="g-description">
             {{item.name}}
@@ -54,10 +54,8 @@ export default {
   name:'rank',
   data(){
     return {
-      officalList:[],
-      globalList:[],
-
-       
+      officalList: [],
+      globalList: []  
     }
   },
   mixins:[scrollMixin],
@@ -72,14 +70,15 @@ export default {
     }).then(axios.spread(function(res1,res2){
 
         Array.from(arguments).forEach((item,index)=>{
-               
+               console.log(arguments)
                 if(item.data.code == 200){
 
                    _this.officalList.push({
-                      coverImgUrl:item.data.result.coverImgUrl,
-                      name:item.data.result.name,
-                      updateTime:item.data.result.updateTime,
-                      tracks:item.data.result.tracks,
+                      coverImgUrl:item.data.playlist.coverImgUrl,
+                      name:item.data.playlist.name,
+                      updateTime:item.data.playlist.updateTime,
+                      trackUpdateTime: item.data.playlist.trackUpdateTime,
+                      tracks:item.data.playlist.tracks,
                       idx:idxO[index]
 
                    });
@@ -98,14 +97,16 @@ export default {
     }).then(axios.spread(function(res1,res2){
 
         Array.from(arguments).forEach((item,index)=>{
+          console.log(arguments, 'globalList')
                
                 if(item.data.code == 200){
                    
                    _this.globalList.push({
-                      coverImgUrl:item.data.result.coverImgUrl,
-                      name:item.data.result.name,
-                      updateTime:item.data.result.updateTime,
-                      tracks:item.data.result.tracks,
+                      coverImgUrl:item.data.playlist.coverImgUrl,
+                      name:item.data.playlist.name,
+                      updateTime:item.data.playlist.updateTime,
+                      trackUpdateTime: item.data.playlist.trackUpdateTime,
+                      tracks:item.data.playlist.tracks,
                       idx:idxG[index]
                    });
 
@@ -163,7 +164,7 @@ export default {
     .update-time{
        position:absolute;
        left:17/$a+rem;
-       bottom:21/$a+rem;
+       bottom:14/$a+rem;
        color:#fefeff;
        font-size:.9em;
        z-index:55;
@@ -180,14 +181,13 @@ export default {
            width: 317/$a+rem;
            height: 317/$a+rem;
            position: relative;
-           z-index:7;
+           z-index: 7;
+           box-shadow: 0 -76/$a+rem 0 rgba(0, 0, 0, .4) inset;
            img{
              width: 317/$a+rem;
              height: 317/$a+rem;
-             position:absolute;
-             left: 0;
-             top: 0;
-             z-index: 6;
+             position: relative;
+             z-index: -1;
            }
          }
          .o-song-list{
@@ -227,9 +227,12 @@ export default {
            display: inline-block;
            height:317/$a+rem;
            position:relative;
+           box-shadow: 0 -76/$a+rem 0 rgba(0, 0, 0, .4) inset;
            img{
              width:100%;
              height:317/$a+rem;
+             position: relative;
+             z-index: -1;
            }
          }
          .g-description{

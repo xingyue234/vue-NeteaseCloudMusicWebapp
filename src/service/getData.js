@@ -73,7 +73,7 @@ export const lyric = ({id})=> axios.get('/api/lyric',{
 /*
 *  获取歌曲播放url
 */
-export const playUrl = ({id})=> axios.get('/api/music/url',{
+export const playUrl = ({id})=> axios.get('/api/song/url',{
   params:{
     id
   }

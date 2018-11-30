@@ -10,7 +10,7 @@
         </div>
      </div>
      <transition name="fade-in">
-       <iscroll-view class="r-week-con" v-if="weekActive" ref="week"  style="touch-action:none" :options="options">
+       <div class="r-week-con" v-if="weekActive" ref="week" :options="options">
           <ul class="r-week-ul">   
             <li class="r-week-li" v-for="(item,index) in weekRecord" :key="index" 
             @touchstart="playStart"
@@ -30,14 +30,14 @@
               </div>
             </li>
           </ul>
-      </iscroll-view>
+      </div>
      </transition>
      <transition name="fade-in">
-       <iscroll-view class="r-week-con" v-if="allActive" style="touch-action:none" :options="options">
+       <div class="r-week-con" v-if="allActive" :options="options">
           <ul class="r-week-ul">
             <li class="r-week-li" v-for="(item,index) in allRecord" :key="index"
             @touchstart="playStart"
-            @touchend="playEnd($event,item.song.id,item.song.name,getArtistsName(item.song.ar),item.song.al.picUrl)"
+            @touchend="playEnd($event,item.song.id,item.song.name,getArtistsName(item.song.ar),item.song.al.picUrl,item)"
             >
               <div class="num" v-if="item.song.id == id"><i class="iconfont icon-volume-"></i></div>
               <div class="num" v-else>{{index+1}}</div>
@@ -53,7 +53,7 @@
               </div>
             </li>
           </ul>
-      </iscroll-view>
+      </div>
      </transition>
   </div>
 </template>
@@ -84,7 +84,7 @@ import {scrollMixin} from '@/common/js/mixin';
         click: true,
         preventDefault: false,
         tap: false,
-        bounce: true,
+        bounce: false,
         disableTouch: false,
         disableMouse:false,
         scrollbars:true,
@@ -208,6 +208,7 @@ import {scrollMixin} from '@/common/js/mixin';
     bottom:131/$a+rem;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     .r-week-ul{
       background:#f2f4f5;
       .r-week-li{

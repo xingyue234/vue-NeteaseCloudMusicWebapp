@@ -24,7 +24,7 @@ export default{
 
    },
    getMyplayList(state, getters){
-      return  state.myplayList.reverse();
+      return  state.myplayList;
    },
 
 

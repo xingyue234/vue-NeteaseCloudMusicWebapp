@@ -83,42 +83,75 @@ export default{
     addToNext(){
           let play_list_id = this.playListId.slice();
           let index = play_list_id.indexOf(this.songId);
-          if(play_list_id.indexOf(this.next.id) === -1){
+          let nextIndex = play_list_id.indexOf(this.next.id)
+          console.log(nextIndex, 'click 下一首播放')
+          if(nextIndex === -1){
              play_list_id.splice(index,0,this.next.id);
              this.$store.commit('updateplayListId', play_list_id);
              setStore('playListId',play_list_id);
              console.log('添加了id');
 
+             //更新播放列表
+            let my_play_list = this.myplayList.slice();
+            let pIndex = 0;
+            my_play_list.forEach((item,index)=>{
+                if(item.song.id == this.songId){
+                    pIndex = index;
+                }
+            })
+            songDetail({
+              ids:this.next.id
+            }).then((res)=>{
+                if(res.data.code == 200){
+                    my_play_list.splice(pIndex,0,{
+                          song:res.data.songs[0]
+                      })
+                  this.$store.commit('updatemyplayList',my_play_list);
+                }
+            })
+          } else {
+            play_list_id.splice(nextIndex, 1)
+            index = play_list_id.indexOf(this.songId);
+            play_list_id.splice(index,0,this.next.id);
+            this.$store.commit('updateplayListId', play_list_id);
+            setStore('playListId',play_list_id);
+            console.log('添加了id');
 
+            //更新播放列表
+            let my_play_list = this.myplayList.slice();
+            let pNextIndex = 0;
+            let pIndex = 0;
 
-              //更新播放列表
-              let my_play_list = this.myplayList.slice();
-              let pIndex = 0;
-              my_play_list.forEach((item,index)=>{
-                  if(item.song.id == this.songId){
-                      pIndex = index;
-                  }
-              })
-              songDetail({
-                ids:this.next.id
-              }).then((res)=>{
-                  console.log(res,'添加到下一首播放');
-                  if(res.data.code == 200){
-                      my_play_list.splice(pIndex,0,{
-                            song:res.data.songs[0]
-                        })
-                    this.$store.commit('updatemyplayList',my_play_list);
-                  }
-              })
+            pNextIndex = my_play_list.findIndex((item,index) => {
+              return item.song.id == this.next.id
+            })
+            my_play_list.splice(pNextIndex, 1)
 
-              this.$store.commit('updateshowSongMore',false);
-              setTimeout(()=>{
-                this.$store.commit('updatepop',{
-                    title:'已添加到下一首播放',
-                    show:true
-                })
-              },400)
+            pIndex = my_play_list.findIndex((item,index) => {
+              return item.song.id == this.songId
+            })
+            console.log(pNextIndex, pIndex, 'pIndex')
+
+            songDetail({
+              ids:this.next.id
+            }).then((res)=>{
+                if(res.data.code == 200){
+                    my_play_list.splice(pIndex,0,{
+                          song:res.data.songs[0]
+                      })
+                  this.$store.commit('updatemyplayList',my_play_list);
+                }
+            })
           }
+          
+
+          this.$store.commit('updateshowSongMore',false);
+          setTimeout(()=>{
+            this.$store.commit('updatepop',{
+                title:'已添加到下一首播放',
+                show:true
+            })
+          },400)
        
         
     },

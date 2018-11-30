@@ -90,7 +90,7 @@ export default {
               this.p.title = '登录成功';
               this.p.err = false;
               setTimeout(()=>{
-                this.$router.push('/my');
+                this.$router.replace('/my');
               },2000)
               setStore('loginInfo',{
                  id:res.data.account.id,

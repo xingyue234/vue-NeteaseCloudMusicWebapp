@@ -26,7 +26,7 @@
                 <li :class="{'p-l-c-li':true,'is-play':item.song.id == songId}" v-for="(item,index) in getMyplayList" 
                 :key="index"
                 @touchstart="playStart"
-                @touchend="playListEnd($event,item.song.id,item.song.name,getArtistsName(item.song.ar))"
+                @touchend="playListEnd($event,item.song.id,item.song.name,getArtistsName(item.song.ar),(item.al && item.al.picUrl)"
                 >
                   <div class="text">
                     <h4 class="p-l-c-li-h4">

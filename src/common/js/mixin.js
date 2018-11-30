@@ -42,7 +42,7 @@ export const scrollMixin = {
       let sY =  e.changedTouches[0].clientY;
       return Math.sqrt( ( sX - this.tsX )*( sX - this.tsX ) + ( sY - this.tsY )*( sY - this.tsY ) );
     },
-    playEnd(e,id,name,singer,singerImg){
+    playEnd (e,id,name,singer,singerImg, item){
       if(this.getTouchDis(e) < 10){
          //存储storage
           setStore('nowId',id);
@@ -62,17 +62,10 @@ export const scrollMixin = {
             }
            //更新播放列表
             let _myplayList = this.myplayList.concat();
-            songDetail({
-              ids:id
-            }).then((res)=>{
-                console.log(res,'更新播放列表');
-                if(res.data.code == 200){
-                    _myplayList.unshift({
-                          song:res.data.songs[0]
-                      })
-                  this.$store.commit('updatemyplayList',_myplayList);
-                }
+            _myplayList.unshift({
+                song: item
             })
+            this.$store.commit('updatemyplayList',_myplayList);
           }
          
 
@@ -82,21 +75,26 @@ export const scrollMixin = {
            }
           this.$store.commit('updateplayInfo',{
             id,
-            //name,
-            //singer,
-            //singerImg
+            name,
+            singer,
+            singerImg
           })
           this.$store.commit('updateisplaying',true);
           
       }
     },
-    playListEnd(e,id){
+    playListEnd (e,id,name,singer,singerImg){
       if(this.getTouchDis(e) < 10){
+        console.log(singer, 'singer')
+        console.log(singerImg, 'singerImg')
           if(id == this.songId){
             this.$store.commit('updateshowPlay',true);
           }
         this.$store.commit('updateplayInfo',{
-          id
+          id,
+          name,
+          singer,
+          singerImg
         })
         this.$store.commit('updateisplaying',true);
       }
@@ -111,19 +109,20 @@ export const scrollMixin = {
        })
        return artist.join('/');
     },
-    getUpdateText(time,type){
+    getUpdateText (time, type) {
       let T = new Date(time);
       let Y = T.getFullYear();
-      let M = T.getMonth()+1;
+      let M = T.getMonth() + 1;
       let D = T.getDate();
       let H = T.getHours();
+      H = H < 10 ? '0' + H : H;
       let Minutes = T.getMinutes();
-      if( type=='minutes' ){
-           return `${M}.${D} ${H}:${M}`;
-      }else if(type=='date'){
-           return `${M}月${D}日`;
+      Minutes = Minutes < 10 ? '0' + Minutes : Minutes;
+      if (type === 'minutes') {
+        return `${M}月${D}日 ${H}:${Minutes}`;
+      } else if (type === 'date') {
+        return `${M}月${D}日`;
       }
-      
     },
     covertWan(count){
       return count < 10000 ? count : Math.floor(count/10000)+'万';

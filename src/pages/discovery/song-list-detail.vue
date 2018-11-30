@@ -8,8 +8,7 @@
         <div class="h-search" @click="showsearchList=true"><i class="iconfont icon-search02"></i></div>
         <div class="h-more"><i class="iconfont icon-more3"></i></div>
       </my-header>
-   <iscroll-view class="scroll-content" style="touch-action: none;" 
-      :options="options"
+   <div class="scroll-content"
       @scroll="sMove"
     >
       <div>
@@ -30,7 +29,7 @@
           </div>
           <div class="list-name">
             <h6 class="h6-text">{{songsDetail.name}}</h6>
-            <div class="l-n-d">
+            <div class="l-n-d" v-if="songsDetail.creator">
               <span class="l-n-d-img">
                 <span class="vip-type" v-if="songsDetail.creator.expertTags"><i class="iconfont icon-jinlingyingcaiwangtubiao49"></i></span>
                 <img :src="songsDetail.creator.avatarUrl" alt="" v-pic>
@@ -70,7 +69,7 @@
             <ul class="s-l-ul">
               <li class="s-l-li" v-for="(item,index) in songsDetail.tracks" 
               @touchstart="playStart"
-              @touchend="playEnd($event,item.id,item.name,getArtistsName(item.ar),item.al.picUrl)"
+              @touchend="playEnd($event,item.id,item.name,getArtistsName(item.ar),item.al.picUrl,item)"
               :key="index">
                <div class="num" v-if="item.id == songId"><i class="iconfont icon-volume-"></i></div>
                <div class="num" v-else>{{index+1}}</div>
@@ -82,7 +81,7 @@
                     </div>
                     <div class="singer">{{getArtistsName(item.ar)}} - {{item.al.name}}</div>
                   </div>
-                  <div class="more" @click="goLayer(item.id,item.name)" @touchend.stop.prevent>
+                  <div class="more" @click="goLayer(item.id,item.name)" @touchend.stop>
                     <i class="iconfont icon-more3"></i>
                   </div>
                 </div>
@@ -91,7 +90,7 @@
         </div>
       </div>
     </div>
-  </iscroll-view>
+  </div>
   <song-search 
   v-on:startSearch="searchList" 
   v-if="showsearchList"
@@ -131,7 +130,6 @@ export default {
     playlistDetail({
       id:this.id
     }).then((res)=>{
-      //console.log(res,'歌单详情');
       if(res.data.code == 200){
           this.songsDetail = res.data.playlist;
           setTimeout(()=>{
@@ -158,21 +156,16 @@ export default {
         name
       });
     },
-    sMove(iscroll){
-      let Y = -iscroll.y;
-      let H1 = this.$refs.details.querySelector('.my-header').offsetHeight;
-      let H2 = this.$refs.details.querySelector('.songs-hh').offsetHeight;
-      if(Y > H2 - H1){
-        return;
-      }
-      if(Y <= H2 - H1){
-          this.bgOpacity = + (Y/(H2 - H1)).toFixed(1)*.8;
-          this.HOpacity = + (((H2 - H1)-Y)/(H2 - H1)).toFixed(1);
-      }
-      if(Y >= H1){
-         this.songsTitle = this.songsDetail.name;
-      }else{
-         this.songsTitle = '歌单';
+    sMove (e) {
+      let Y = e.target.scrollTop;
+      if(Y > 107 ){
+          this.bgOpacity = .7;
+          this.HOpacity = 1;
+          this.songsTitle = this.songsDetail.name;
+      } else {
+          this.bgOpacity = 0;
+          this.HOpacity = 1;
+          this.songsTitle = '歌单';
       }
     },
     isTextOver(text){
@@ -188,7 +181,8 @@ export default {
                       song:{
                           id:item.id,
                           name:item.name,
-                          ar:item.ar
+                          ar:item.ar,
+                          al:item.al
                       }
                     })
                     play_listId.push(item.id)
@@ -228,6 +222,7 @@ export default {
     width:100%;
     bottom:131/$a+rem;
     overflow-y: auto;
+    -webkit-overflow-scrolling:touch;
   }
   .my-header{
     position: fixed;
